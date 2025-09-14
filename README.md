@@ -1,1 +1,1 @@
-This Repo is made for basic DSA practice and code.
+This Repo is made for basic DSA practice.
