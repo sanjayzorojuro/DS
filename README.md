@@ -1,2 +1,2 @@
-General repo used for datastructure and algorithms practices.
+ General repo used for datastructure and algorithms practices.
 
