@@ -4,7 +4,7 @@ z=[[0,0],[0,0]]
 
 print("First matrix is:")
 for i in x:
-    print(i)
+    print(i) 
 
 print("The second matrix is:")
 for i in y:
