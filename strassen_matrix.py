@@ -24,7 +24,7 @@ z[1][0]=m2+m4
 z[1][1]=m1-m2+m3+m6
 
 
-print("The final matrix is :")
+print("The Final Matrix is :")
 for i in z:
     print(i)
 
