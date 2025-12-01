@@ -21,7 +21,7 @@ m7=(x[0][1]-x[1][1])*(y[1][0]+y[1][1])
 z[0][0]=m1+m4-m5+m7
 z[0][1]=m3+m5
 z[1][0]=m2+m4
-z[1][1]=m1-m2+m3+m7
+z[1][1]=m1-m2+m3+m6
 
 print("The final matrix is :")
 for i in z:
