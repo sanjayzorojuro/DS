@@ -1,64 +1,50 @@
 from array import *
-import random
-import time
+import random,time
 
-def mergesort(a,low,high):
-    if(low<high):
-        mid = (low+high) // 2
-        mergesort(a,low,mid)
-        mergesort(a,mid+1,high)
-        merge(a,low,mid,high)
+def mergesort(a):
+    if len(a) <= 1:
+        return a
+    mid = len(a) // 2
+    left = mergesort(a[ :mid])
+    right = mergesort(a[mid: ])
+    return merge(left,right)
 
-def merge(a,low,mid,high):
-    n1= mid - low + 1
-    n2= high - mid
-
-    left=[0] * (n1)
-    right=[0] * (n2)
-
-    for i in range(0,n1):
-        left[i] = a [low + i]
-    for  j in range(0,n2):
-        right[j] = a [mid+1+j]
-
+def merge(left,right):
+    res= []
     i=j=0
-    k=low
 
-    while i<n1 and j<n2:
-        if left[i] <= right[j]:
-            a[k]=left[i]
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            res.append(left[i])
             i+=1
         else:
-            a[k]=right[j]
+            res.append(right[j])
             j+=1
-        k+=1
-    while (i<n1):
-        a[k]=left[i]
-        i+=1
-        k+=1
-    while (j<n2):
-        a[k]=right[j]
-        j+=1
-        k+=1
+        
+    res.extend(left[i:])
+    res.extend(right[j:])
 
-a=array('i',[])
+
+    return res
+
+a = array('i',[])
 
 for i in range(5005):
-    n=random.randrange(5000)
-    a.append(n)
+    a.append(random.randrange(5000))
 
-size=len(a)
+start = time.time()
+print("Array before sorting is",a)
 
-print("Array before sorting:",a)
-start=time.time()
 print("The starting time is :",start)
 
-mergesort(a,0,size-1)
+sortedd = mergesort(a)
 
-print("Array after sorting:",a)
-end=time.time()
-print("The ending time is:",end)
+print("Array after sorting is:",sortedd)
 
-diff=end-start
-print("The total time taken to complete the sorting is:",diff)
-    
+end = time.time()
+print("The end time is :",end)
+
+diff = end-start
+print("The total time taken is:",diff)
+
+

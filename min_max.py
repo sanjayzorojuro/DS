@@ -1,39 +1,40 @@
-#this is a code to find the min max elements from a array using divide and conquer method.
 from array import *
 
-a=[]
+a= array('i',[])
 
 def minmax(a,low,high):
-    if low == high :
-        return (a[low],a[high])
-    elif high - low  == 1:
+    if low == high:
+        return a[low],a[high]
+    elif high-low == 1:
         if a[low] < a[high]:
-            return (a[low],a[high])
+            return a[low],a[high]
         else:
-            return (a[high],a[low])
+            return a[high],a[low]
     else:
-        mid= (low+high) // 2 
-        lmin,lmax = minmax(a,low,mid)
-        rmin,rmax = minmax(a,mid+1,high)
+        mid = (low+high) // 2
+        lmin,rmin = minmax(a,low,mid)
+        lmax,rmax = minmax(a,mid+1,high)
 
         if lmin < rmin:
-            min=lmin
+            min2 = lmin
         else:
-            min=rmin
+            min2 = rmin
+
         if lmax > rmax:
-            max=lmax
+            max2 = lmax
         else:
-            max=rmax
-        return(min,max)
+            max2 = rmax
+        
+    return min2,max2
 
+n = int(input("Enter no of array elements:"))
 
-n=int(input("Enter number of array elements:"))
-for i in range(n):
-    ele=int(input('Enter array elemenst:'))
+for i in range (n):
+    ele = int(input("Enter array elements:"))
     a.append(ele)
 
-min,max=minmax(a,0,n-1)
-print("The minimum element in the array is:",min)
-print("The maximun element in the array is:",max)
+min1,max1 = minmax(a,0,n-1)
 
-        
+print("The min element is",min1)
+print("The max element is",max1)
+

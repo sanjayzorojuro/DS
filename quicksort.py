@@ -2,31 +2,21 @@ from array import *
 import random
 import time
 
-def quicksort(a,low,high):
-    if low<high:
-        pi=partician(a,low,high)
-        quicksort(a,low,pi-1)
-        quicksort(a,pi+1,high)
+def quicksort(a):
+    if len(a) <= 1:
+        return a
+    pivot = a[0]
+              
+    left = [x for x in a[1:] if x < pivot]
+    right = [x for x in a[1:] if x >= pivot]
 
-def partician(a,low,high):
-    pivot=a[low]
-    i=low
-    j=high
+    return quicksort(left) + [pivot] + quicksort(right)
 
-    while i<j:
-        while a[i] <= pivot and i < high:
-            i+=1
-        while a[j] > pivot and j > low:
-            j-=1
-        if i < j:
-            a[i],a[j]=a[j],a[i]
-    a[low],a[j]=a[j],a[low]
-    return j
 
 a=array("i",[])
 
 for i in range(5005):
-    n=random.randrange(10000)
+    n=random.randrange(5000)
     a.append(n)
 
 size=len(a)
@@ -35,9 +25,9 @@ print("The array before sorting :",a)
 start=time.time()
 print("Thw starting time is:",start)
 
-quicksort(a,0,size-1)
+b = quicksort(a)
 
-print("The array after sorting :",a)    
+print("The array after sorting :",b)    
 end=time.time()
 print("The ending time is:",end)
 
