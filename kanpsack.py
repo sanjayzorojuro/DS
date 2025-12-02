@@ -1,16 +1,22 @@
-def knapsack(n,capa,wig,pric):
-    if n==0 or capa==0:
-        return 0
-    if (wig[n-1]>capa):
-        return knapsack(n-1,capa,wig,pric)
+def knapsack(n,c,w,p):
+    if n == 0 or c == 0:
+        return 0 
+    if w[n-1] > c : 
+        return knapsack(n-1,c,w,p)
     else:
-        return max(pric[n-1]+knapsack(n-1,capa-wig[n-1],wig,pric),knapsack(n-1,capa,wig,pric))
+        return max(p[n-1]+knapsack(n-1,c-w[n-1],w,p),knapsack(n-1,c,w,p))
     
-weight=[7,3,4,5]
-prices=[42,12,40,25]
-n=4
-capa=10
+p = [10,20,30,50]
+w = [1,2,3,4]
+c = 6
+n = 4
 
-print(knapsack(n,capa,weight,prices))
 
-    
+print("The price is:",p)
+print("The weight is:",w)
+print("The capacity is:",c)
+
+print()
+print("Optimal solution:")
+print(knapsack(n,c,w,p))
+

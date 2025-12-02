@@ -1,41 +1,43 @@
-def solutiona(b):
-    for row in b:
-        print("".join("Q" if col else"."for col in row))
-
+def print_sol(board,n):
+    for row in range(n):
+        line = " "
+        for col in range(n):
+            if board[row] == col:
+                line += "Q"
+            else:
+                line+= "."
+        print(line)
     print()
 
-def is_safe(b,row,col,n):
-    for i in range(n):
-        if b[i][col]:
+def is_safe(board,row,col):
+    for i in range(row):
+        if board[i] == col:
             return False
-    for i,j in zip(range(row-1,-1,-1),range(col-1,-1,-1)):
-        if b[i][j]:
-            return False
-    for i,j in zip(range(row-1,-1,-1),range(col+1,n)):
-        if b[i][j]:
+        if  abs(board[i]-col) == abs(i - row):
             return False
     return True
 
-def solve_n(b,row,n,sol):
-    if row==n:
-        solution=[row[:]for row in b]
-        sol.append(solution)
-
+def solve(board,row,n,solutions):
+    if row == n:
+        solutions.append(board[:])
+        return
+    
     for col in range(n):
-        if is_safe(b,row,col,n):
-            b[row][col]=1
-            solve_n(b,row+1,n,sol)
-            b[row][col]=0
+        if is_safe(board,row,col):
+            board[row] = col 
+            solve(board,row+1,n,solutions)
+            board[row] = -1
 
-def nqueen(n):
-    b=[[0 for _ in range(n)]for _ in range(n)]
-    sol=[]
-    solve_n(b,0,n,sol)
-    return sol
+def queen(n):
+    board = [-1]*n 
+    solutions = []
+    solve(board,0,n,solutions)
+    return solutions
 
-n=int(input("Enter a number"))
-res=nqueen(n)
-print(f"the queens for {n} is :{len(res)}")
-for idx,solu in enumerate(res,start=1):
-    print(f"The solutio is {idx}")
-    solutiona(solu)
+n=int(input("Enter the no of queens:"))
+
+res = queen(n)
+
+for i, sol in enumerate(res,start=1):
+    print(f"Solution for {i}")
+    print_sol(sol,n)
