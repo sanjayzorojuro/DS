@@ -1,2 +1,2 @@
 
-else:
+    minpath = maxsize
