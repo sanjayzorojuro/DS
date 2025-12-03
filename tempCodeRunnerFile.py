@@ -1,2 +1,2 @@
 
-    minpath = maxsize
+        rank[ru] += 1
